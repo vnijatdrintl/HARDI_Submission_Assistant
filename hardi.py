@@ -51,7 +51,7 @@ def cleanCDJ(df):
 
 def cleanNine(df,missCol):
     for i in range(0,df.shape[1]):
-        if df[df.columns[i]].isnull().sum()>0.95*df.shape[1]:
+        if df[df.columns[i]].isnull().sum()>0.95*df.shape[0]:
             missCol=i
             break
     if missCol==1:
@@ -651,7 +651,7 @@ def CenturyACSupply(file_path,orgName,year,month):
 
     #load the file to a data frame
     xls=pd.ExcelFile(file_path)
-    df=pd.read_excel(xls)
+    df=pd.read_excel(xls,skiprows=2)
 
     row,ans=createDF(df,orgName)
 
