@@ -1660,7 +1660,8 @@ def jsPopma(file_path,orgName,year,month):
 def kochAir(file_path,orgName,year,month):
 
     xls=pd.ExcelFile(file_path)
-    df=pd.read_excel(xls,sheet_name=1)
+    #df=pd.read_excel(xls,sheet_name=1)
+    df=pd.read_excel(xls)
 
     s=pd.Series(['BE','CE','HO','PE','CP','BP','BV','BF','CH','EL','FC','FD','FI','FS','HA','IN','LS','MA','MF','MR','PG','PV','RP','SH','TA','VT','WH','WN'])
 
