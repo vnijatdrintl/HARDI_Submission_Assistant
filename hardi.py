@@ -1008,6 +1008,7 @@ def designAir(file_path,orgName,year,month):
     #load the file to a data frame
     xls=pd.ExcelFile(file_path)
     df=pd.read_excel(xls)
+    df=df.fillna('')
     row,ans=createDF(df,orgName)
 
     #Copy other columns
@@ -1015,7 +1016,6 @@ def designAir(file_path,orgName,year,month):
     ModelCol=pd.Series(ModelCol)
 
     for i in range(0,row):
-
         if df['supplier_part_no'].iloc[i]=='':
             ModelCol.iloc[i]=df['item_desc'].iloc[i]
         else:
