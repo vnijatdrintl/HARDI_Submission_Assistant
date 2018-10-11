@@ -477,7 +477,7 @@ def BestChoice(file_path,orgName,year,month):
 
     #load the file to a data frame
     xls=pd.ExcelFile(file_path)
-    df=pd.read_excel(xls)
+    df=pd.read_excel(xls,sheet_name='Sheet1')
 
     row,ans=createDF(df,orgName)
 
