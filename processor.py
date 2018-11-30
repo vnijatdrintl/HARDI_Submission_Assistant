@@ -1,7 +1,10 @@
+# this script acts like a big switch statement
+# it takes the organization name
+#send the file path, month, year, and organization name to hardi
+#to convert the file
 from math import ceil
 import hardi
 import sys
-
 
 def process(orgName,year,month,file_names,save_file_path):
 
@@ -223,11 +226,14 @@ def process(orgName,year,month,file_names,save_file_path):
         result_message='ohps! Lord Varis hasn\'t work on it yet'
         return stat_message,result_message
 
+    #df means dataframe
+    #my script heavily depends on Python's Pandas library
+    # here df is in converted version, i just simply write it to a csv file
     # save the file
     df.to_csv(save_file_path, index=False,encoding='utf-8')
-    save_file_path.close()
 
     # summary
+    # do some simple statistic test
     count = df['Total_Unit_Sales'].count()
     sum = df['Total_Unit_Sales'].sum()
 
@@ -235,6 +241,7 @@ def process(orgName,year,month,file_names,save_file_path):
 
     quarter = ceil(month / 3)
 
+    #stat check to use for quarterly submissions 
     if orgName=='Capitol Group' or orgName=='Airefco' or orgName=='Meier Supply':
         if df['Quarter'].sum() != quarter * row:
             result_message="There is data from different quarters"

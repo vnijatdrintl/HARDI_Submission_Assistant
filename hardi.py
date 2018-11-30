@@ -1,9 +1,14 @@
+#This is the file where conversion takes place
+#pretty much each distributor has its own function
+#some of them have similar dataframe, so they share the same method
 import pandas as pd
 from math import ceil
 import sys
 import datetime
 import os
 
+
+#this function is used to create final dataframe
 def createDF(df,orgName):
 
     #get number of rows
@@ -18,7 +23,7 @@ def createDF(df,orgName):
 
     return row,ans
 
-
+#charles d jones has such messy data, this is just some effort to clean it up
 def cleanCDJ(df):
 
     if df.shape[1]<8:
@@ -48,7 +53,10 @@ def cleanCDJ(df):
 
     return df
 
-
+#i have made charles D jones submission easier,
+# but the website i used to convert pdf to excel has a problem
+# some excel sheet has nine columns whereas some has eight columns
+# this is used to clean up the excel sheet that has 9 columns
 def cleanNine(df,missCol):
     for i in range(0,df.shape[1]):
         if df[df.columns[i]].isnull().sum()>0.95*df.shape[0]:
@@ -71,6 +79,11 @@ def cleanNine(df,missCol):
 
     return df
 
+#the rest of the code is very hard to comment
+#but it general its doing copy paste
+#some transform date variable
+#if you can read a bit about Pandas documentation,
+#you will understand how it does conversion
 def twoJsupply(file_path,orgName,year,month):
 
     #load the file to a data frame
